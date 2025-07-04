@@ -1,9 +1,10 @@
 
 
-package com.entreprise.gestionreglements.entity;
+package com.example.System_gestion_LEXUS.Entities;
 
 import jakarta.persistence.*;
 import java.util.List;
+
 
 @Entity
 @Table(name = "clients")
@@ -16,7 +17,7 @@ public class Client {
     @Column(name = "nom", nullable = false)
     private String nom;
 
-    @Column(name = "prenom", nullable = false)
+    Columns(name = "prenom", nullable = false)
     private String prenom;
 
     @Column(name = "telephone", nullable = false)
