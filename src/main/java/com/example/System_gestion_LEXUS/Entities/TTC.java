@@ -15,7 +15,7 @@ public class TTC extends Facture {
 
     public TTC() {}
 
-    public TTC(Client client, List<Service> services, Double montantAvantTaxe, Double montantTTC) {
+    public TTC(Client client, List<Travail> services, Double montantAvantTaxe, Double montantTTC) {
         super(client, services);
         this.montantAvantTaxe = montantAvantTaxe;
         this.montantTTC = montantTTC;

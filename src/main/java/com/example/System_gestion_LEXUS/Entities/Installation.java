@@ -5,7 +5,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "installations_serveur")
-public class Installation extends Service {
+public class Installation extends Travail {
 
     @Column(nullable = false)
     private String description;

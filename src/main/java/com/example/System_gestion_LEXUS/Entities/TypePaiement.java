@@ -2,7 +2,7 @@ package com.example.System_gestion_LEXUS.Entities;
 
 
 import jakarta.persistence.*;
-import java.util.List;
+
 
 
 @Entity
@@ -16,8 +16,6 @@ public class TypePaiement {
     @Column(nullable = false, unique = true)
     private String nom; 
 
-    @OneToMany(mappedBy = "type", cascade = CascadeType.ALL)
-    private List<Encaissement> encaissements;
 
     public TypePaiement() {
     }
@@ -44,13 +42,7 @@ public class TypePaiement {
         this.nom = nom;
     }
 
-    public List<Encaissement> getEncaissements() {
-        return encaissements;
-    }
-
-    public void setEncaissements(List<Encaissement> encaissements) {
-        this.encaissements = encaissements;
-    }
+   
 
     
 }

@@ -5,7 +5,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "abonnements")
-public class Abonnement extends Service {
+public class Abonnement extends Travail {
 
     @Column(name = "duree_en_mois", nullable = false)
     private int dureeEnMois;

@@ -12,7 +12,7 @@ public class Sans_taxe extends Facture {
 
     public Sans_taxe() {}
 
-    public Sans_taxe(Client client, List<Service> services, Double montantAPayer) {
+    public Sans_taxe(Client client, List<Travail> services, Double montantAPayer) {
         super(client, services);
         this.montantAPayer = montantAPayer;
     }

@@ -1,7 +1,7 @@
 package com.example.System_gestion_LEXUS.Controller;
 
-import com.example.System_gestion_LEXUS.Entities.Reglement;
-import com.example.System_gestion_LEXUS.Services.ReglementService;
+import com.example.System_gestion_LEXUS.Entities.Encaissement;
+import com.example.System_gestion_LEXUS.Services.EncaissementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,27 +9,27 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/reglements")
+@RequestMapping("/api/encaissements")
 @CrossOrigin(origins = "*")
-public class ReglementController {
+public class EncaissementController {
 
     @Autowired
-    private ReglementService service;
+    private EncaissementService service;
 
     @GetMapping
-    public List<Reglement> getAll() {
+    public List<Encaissement> getAll() {
         return service.getAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Reglement> getById(@PathVariable Long id) {
+    public ResponseEntity<Encaissement> getById(@PathVariable Long id) {
         return service.getById(id).map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public Reglement create(@RequestBody Reglement r) {
-        return service.save(r);
+    public Encaissement create(@RequestBody Encaissement e) {
+        return service.save(e);
     }
 
     @DeleteMapping("/{id}")
@@ -38,3 +38,4 @@ public class ReglementController {
         return ResponseEntity.noContent().build();
     }
 }
+

@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "services")
-public abstract class Service {
+public abstract class Travail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
@@ -20,9 +20,9 @@ public abstract class Service {
     protected List<Depense> depenses;
 
     // Constructeurs
-    public Service() {}
+    public Travail() {}
 
-    public Service(Double frais, List<Depense> depenses) {
+    public Travail(Double frais, List<Depense> depenses) {
         this.frais = frais;
         this.depenses = depenses;
     }

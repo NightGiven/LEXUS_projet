@@ -21,11 +21,11 @@ public abstract class Facture {
         joinColumns = @JoinColumn(name = "facture_id"),
         inverseJoinColumns = @JoinColumn(name = "service_id")
     )
-    private List<Service> services;
+    private List<Travail> services;
 
     public Facture() {}
 
-    public Facture(Client client, List<Service> services) {
+    public Facture(Client client, List<Travail> services) {
         this.client = client;
         this.services = services;
     }
@@ -48,11 +48,11 @@ public abstract class Facture {
         this.client = client;
     }
 
-    public List<Service> getServices() {
+    public List<Travail> getServices() {
         return services;
     }
 
-    public void setServices(List<Service> services) {
+    public void setServices(List<Travail> services) {
         this.services = services;
     }
     

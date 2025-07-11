@@ -1,5 +1,7 @@
 package com.example.System_gestion_LEXUS.Entities;
 
+import java.sql.Date;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -13,17 +15,15 @@ public class Depense {
     @Column(nullable = false)
     private Double montant;
 
+    @Column(nullable = false)
+    private Date date;
   
-    @ManyToOne
-    @JoinColumn(name = "service_id")
-    private Service service;
-
     // Constructeurs
     public Depense() {}
 
-    public Depense(Double montant, Service service) {
+    public Depense(Double montant) {
         this.montant = montant;
-        this.service = service;
+    
     }
 
     // Getters & Setters
@@ -43,11 +43,12 @@ public class Depense {
         this.montant = montant;
     }
 
-    public Service getService() {
-        return service;
+     public Date getDate() {
+        return date;
     }
 
-    public void setService(Service service) {
-        this.service = service;
+    public void setDate(Date date) {
+        this.date = date;
     }
+
 }
