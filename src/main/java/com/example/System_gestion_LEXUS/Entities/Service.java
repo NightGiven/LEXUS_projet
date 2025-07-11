@@ -1,6 +1,5 @@
 package com.example.System_gestion_LEXUS.Entities;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import jakarta.persistence.*;
