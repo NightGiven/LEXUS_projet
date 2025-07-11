@@ -1,42 +1,43 @@
 package com.example.System_gestion_LEXUS.Entities;
 
 import jakarta.persistence.*;
-import java.time.LocalDate;
+
+import java.sql.Date;
 
 @Entity
 @Table(name = "encaissements")
 public class Encaissement {
 
-    @Id
+     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private double montant;
+    @Column(name = "montant_encaisse", nullable = false)
+    private Double montantEncaisse;
 
-    @Column(nullable = false)
-    private LocalDate date;
+    @Column(name = "date_encaissement", nullable = false)
+    @Temporal(TemporalType.DATE)
+    private Date dateEncaissement;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "client_cin", referencedColumnName = "cin")
-    private Client client;
+    @Column(length = 255)
+    private String description;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "type_id")
-    private TypePaiement type;
+    // 🔁 Relation avec Reglement (ManyToOne)
+    @ManyToOne
+    @JoinColumn(name = "reglement_id")
+    private Reglement reglement;
 
-    // Constructeurs
-    public Encaissement() {
+    // ✅ Constructeurs
+    public Encaissement() {}
+
+    public Encaissement(Double montantEncaisse, Date dateEncaissement, String description, Reglement reglement) {
+        this.montantEncaisse = montantEncaisse;
+        this.dateEncaissement = dateEncaissement;
+        this.description = description;
+        this.reglement = reglement;
     }
 
-    public Encaissement(Double montant, LocalDate date, Client client, TypePaiement type) {
-        this.montant = montant;
-        this.date = date;
-        this.client = client;
-        this.type = type;
-    }
-
-    // Getters et Setters
+    // ✅ Getters & Setters
 
     public Long getId() {
         return id;
@@ -46,35 +47,35 @@ public class Encaissement {
         this.id = id;
     }
 
-    public Double getMontant() {
-        return montant;
+    public Double getMontantEncaisse() {
+        return montantEncaisse;
     }
 
-    public void setMontant(Double montant) {
-        this.montant = montant;
+    public void setMontantEncaisse(Double montantEncaisse) {
+        this.montantEncaisse = montantEncaisse;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public Date getDateEncaissement() {
+        return dateEncaissement;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setDateEncaissement(Date dateEncaissement) {
+        this.dateEncaissement = dateEncaissement;
     }
 
-    public Client getClient() {
-        return client;
+    public String getDescription() {
+        return description;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public TypePaiement getType() {
-        return type;
+    public Reglement getReglement() {
+        return reglement;
     }
 
-    public void setType(TypePaiement type) {
-        this.type = type;
+    public void setReglement(Reglement reglement) {
+        this.reglement = reglement;
     }
 }

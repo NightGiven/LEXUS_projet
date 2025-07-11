@@ -1,6 +1,7 @@
 package com.example.System_gestion_LEXUS.Entities;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import jakarta.persistence.*;
 
@@ -8,30 +9,33 @@ import jakarta.persistence.*;
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "services")
 public abstract class Service {
-     @Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id_Service;
+    protected Long id;
 
     @Column(nullable = false)
-    private Double frais;
+    protected Double frais;
 
-     @Column(nullable = false)
-    private LocalDate date;
+    // Relation avec les dépenses
+    @OneToMany(mappedBy = "service", cascade = CascadeType.ALL, orphanRemoval = true)
+    protected List<Depense> depenses;
 
     // Constructeurs
     public Service() {}
 
-    public Service(Double frais) {
+    public Service(Double frais, List<Depense> depenses) {
         this.frais = frais;
+        this.depenses = depenses;
     }
 
     // Getters & Setters
-    public Long getIdService() {
-        return Id_Service;
+
+    public Long getId() {
+        return id;
     }
 
-    public void setIdService(Long idService) {
-        this.Id_Service = idService;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Double getFrais() {
@@ -42,15 +46,12 @@ public abstract class Service {
         this.frais = frais;
     }
 
-    public LocalDate getdate() {
-        return date;
+    public List<Depense> getDepenses() {
+        return depenses;
     }
 
-    public void setdate(LocalDate date) {
-        this.date = date;
+    public void setDepenses(List<Depense> depenses) {
+        this.depenses = depenses;
     }
 
-
-
-    
 }

@@ -8,16 +8,16 @@ import java.util.List;
 public class Reglement {
      @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_reglement;
+    private Long id;
 
     @Column(name = "montant_total", nullable = false)
     private Double montantTotal;
 
     @Column(name = "montant_paye", nullable = false)
-    private Double montant_Paye;
+    private Double montantPaye;
 
     @Column(name = "montant_restant", nullable = false)
-    private Double montant_Restant;
+    private Double montantRestant;
 
     @ManyToMany
     @JoinTable(
@@ -27,30 +27,36 @@ public class Reglement {
     )
     private List<Facture> factures;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "reglement_id") // FK dans la table encaissements
-    private List<Encaissement> encaissements;
+   
+    @ManyToOne
+    @JoinColumn(name = "type_paiement_id")
+    private TypePaiement typePaiement;
+
+    @ManyToOne
+    @JoinColumn(name = "client_cin", referencedColumnName = "cin")
+    private Client client;
 
     // Constructeurs
     public Reglement() {}
 
     public Reglement(Double montantTotal, Double montantPaye, Double montantRestant,
-                     List<Facture> factures, List<Encaissement> encaissements) {
+                     List<Facture> factures, TypePaiement typePaiement, Client client) {
         this.montantTotal = montantTotal;
-        this.montant_Paye = montantPaye;
-        this.montant_Restant = montantRestant;
+        this.montantPaye = montantPaye;
+        this.montantRestant = montantRestant;
         this.factures = factures;
-        this.encaissements = encaissements;
+        this.typePaiement = typePaiement;
+        this.client = client;
     }
 
     // Getters & Setters
 
     public Long getId() {
-        return id_reglement;
+        return id;
     }
 
     public void setId(Long id) {
-        this.id_reglement = id;
+        this.id = id;
     }
 
     public Double getMontantTotal() {
@@ -62,19 +68,19 @@ public class Reglement {
     }
 
     public Double getMontantPaye() {
-        return montant_Paye;
+        return montantPaye;
     }
 
     public void setMontantPaye(Double montantPaye) {
-        this.montant_Paye = montantPaye;
+        this.montantPaye = montantPaye;
     }
 
     public Double getMontantRestant() {
-        return montant_Restant;
+        return montantRestant;
     }
 
     public void setMontantRestant(Double montantRestant) {
-        this.montant_Restant = montantRestant;
+        this.montantRestant = montantRestant;
     }
 
     public List<Facture> getFactures() {
@@ -85,12 +91,20 @@ public class Reglement {
         this.factures = factures;
     }
 
-    public List<Encaissement> getEncaissements() {
-        return encaissements;
+    public TypePaiement getTypePaiement() {
+        return typePaiement;
     }
 
-    public void setEncaissements(List<Encaissement> encaissements) {
-        this.encaissements = encaissements;
+    public void setTypePaiement(TypePaiement typePaiement) {
+        this.typePaiement = typePaiement;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
     
 }
