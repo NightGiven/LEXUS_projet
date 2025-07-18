@@ -1,4 +1,4 @@
-package com.example.System_gestion_LEXUS.Service;
+package com.example.System_gestion_LEXUS.Services;
 
 import com.example.System_gestion_LEXUS.Repository.ReglementRepository;
 import com.example.System_gestion_LEXUS.Entities.Reglement;

@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/types-paiement")
@@ -42,11 +43,12 @@ public class TypeController {
     }
 
     @GetMapping("/by-nom/{nom}")
-    public ResponseEntity<TypePaiement> getTypePaiementByNom(@PathVariable String nom) {
-        TypePaiement type = typePaiementService.getTypePaiementByNom(nom);
-        if (type != null) {
-            return new ResponseEntity<>(type, HttpStatus.OK);
-        }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+public ResponseEntity<TypePaiement> getTypePaiementByNom(@PathVariable String nom) {
+    Optional<TypePaiement> type = typePaiementService.getTypePaiementByNom(nom);
+    if (type.isPresent()) {
+        return new ResponseEntity<>(type.get(), HttpStatus.OK);
     }
+    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+}
+
 }
